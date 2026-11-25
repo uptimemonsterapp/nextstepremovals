@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next Step Removals | Trusted House & Office Movers in Perth WA</title>
+<meta name="description" content="Next Step Removals offers professional house, office, apartment and long-distance removals across Perth and Western Australia. Reliable, affordable and fully insured movers. Call 0402 412 063.">
+<meta name="keywords" content="Next Step Removals, Perth movers, house removals Perth, office removals WA, apartment movers, long distance removals Perth, furniture removals">
+<link rel="icon" href="https://nextstepremovals.com.au/wp-content/uploads/2021/07/next-step-removals-logo.png.webp">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['Poppins', 'Inter', 'sans-serif'],
+        },
+        colors: {
+          brand: {
+            50: '#eff6ff',
+            100: '#dbeafe',
+            500: '#2563eb',
+            600: '#1d4ed8',
+            700: '#1e40af',
+            800: '#1e3a8a',
+            900: '#0f2555',
+          },
+          accent: {
+            500: '#f97316',
+            600: '#ea580c',
+            700: '#c2410c',
+          }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #1f2937; }
+  h1, h2, h3, h4, h5, h6, .font-display { font-family: 'Poppins', sans-serif; }
+  .hero-bg {
+    background: linear-gradient(135deg, rgba(15,37,85,0.92) 0%, rgba(30,58,138,0.85) 50%, rgba(29,78,216,0.78) 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="%230f2555"/><stop offset="1" stop-color="%231d4ed8"/></linearGradient></defs><rect fill="url(%23g)" width="1200" height="800"/><g fill="%23ffffff" opacity="0.05"><circle cx="200" cy="150" r="80"/><circle cx="900" cy="600" r="120"/><circle cx="1100" cy="200" r="60"/><circle cx="100" cy="500" r="90"/></g></svg>');
+    background-size: cover;
+    background-position: center;
+  }
+  .service-card { transition: all 0.35s ease; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,37,85,0.15); }
+  .fade-in { animation: fadeIn 0.6s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+    background: #f97316; transition: width 0.3s ease;
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .btn-primary {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(249,115,22,0.4); }
+  .btn-secondary {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    transition: all 0.3s ease;
+  }
+  .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(29,78,216,0.4); }
+  .page { display: none; }
+  .page.active { display: block; }
+  .stat-card { transition: transform 0.3s ease; }
+  .stat-card:hover { transform: scale(1.05); }
+  .testimonial-card { transition: all 0.3s ease; }
+  .testimonial-card:hover { transform: translateY(-5px); }
+  .feature-icon {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transition: all 0.3s ease;
+  }
+  .feature-icon:hover { transform: rotate(-5deg) scale(1.1); }
+  .gradient-text {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+  .mobile-menu.open { transform: translateX(0); }
+  .service-hero {
+    background: linear-gradient(135deg, rgba(15,37,85,0.9) 0%, rgba(30,58,138,0.85) 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%231e3a8a" width="1200" height="400"/></svg>');
+    background-size: cover;
+  }
+  .process-step { position: relative; }
+  .process-step::before {
+    content: ''; position: absolute; top: 30px; left: 100%; width: 100%; height: 2px;
+    background: linear-gradient(90deg, #2563eb, transparent);
+  }
+  @media (max-width: 768px) {
+    .process-step::before { display: none; }
+  }
+  .cta-banner {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+  }
+</style>
+</head>
+<body class="bg-white">
+
+<!-- Top Bar -->
+<div class="bg-brand-900 text-white text-sm py-2 hidden md:block">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+    <div class="flex items-center gap-6">
+      <span><i class="fas fa-clock mr-2 text-accent-500"></i>Mon–Sat: 8:00 AM – 6:00 PM</span>
+      <span><i class="fas fa-map-marker-alt mr-2 text-accent-500"></i>13 Macrandra Way, Dayton WA 6055</span>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="tel:61402412063" class="hover:text-accent-500 transition"><i class="fas fa-phone mr-1"></i>0402 412 063</a>
+      <div class="flex gap-3">
+        <a href="https://www.facebook.com/nextstepremovals/" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-accent-500 transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/nextstepremovals/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-accent-500 transition"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/nextstepremovals/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-accent-500 transition"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between items-center h-20">
+      <a href="#home" class="flex items-center gap-3" onclick="navigate('home')">
+        <img src="https://nextstepremovals.com.au/wp-content/uploads/2021/07/next-step-removals-logo.png.webp" alt="Next Step Removals Logo" class="h-14 w-auto">
+      </a>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#home" onclick="navigate('home')" class="nav-link text-gray-800 font-medium hover:text-brand-600 transition" data-nav="home">Home</a>
+        <div class="relative group">
+          <a href="#services" class="nav-link text-gray-800 font-medium hover:text-brand-600 transition flex items-center gap-1">Services <i class="fas fa-chevron-down text-xs"></i></a>
+          <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 py-2 border-t-2 border-accent-500">
+            <a href="#house-removals" onclick="navigate('house-removals')" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-600 transition"><i class="fas fa-home mr-2 text-accent-500"></i>House Removals</a>
+            <a href="#office-removals" onclick="navigate('office-removals')" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-600 transition"><i class="fas fa-building mr-2 text-accent-500"></i>Office Removals</a>
+            <a href="#apartment-removals" onclick="navigate('apartment-removals')" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-600 transition"><i class="fas fa-city mr-2 text-accent-500"></i>Apartment Removals</a>
+            <a href="#long-distance-removals" onclick="navigate('long-distance-removals')" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-600 transition"><i class="fas fa-truck-moving mr-2 text-accent-500"></i>Long Distance Removals</a>
+          </div>
+        </div>
+        <a href="#about" onclick="navigate('about')" class="nav-link text-gray-800 font-medium hover:text-brand-600 transition" data-nav="about">About</a>
+        <a href="#contact" onclick="navigate('contact')" class="nav-link text-gray-800 font-medium hover:text-brand-600 transition" data-nav="contact">Contact</a>
+        <a href="tel:61402412063" class="btn-primary text-white px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2">
+          <i class="fas fa-phone"></i> 0402 412 063
+        </a>
+      </nav>
+      <button id="mobileMenuBtn" class="lg:hidden text-brand-900 text-2xl" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-white shadow-2xl z-50 lg:hidden">
+  <div class="p-6">
+    <div class="flex justify-between items-center mb-8">
+      <img src="https://nextstepremovals.com.au/wp-content/uploads/2021/07/next-step-removals-logo.png.webp" alt="Logo" class="h-12">
+      <button id="closeMenuBtn" class="text-2xl text-brand-900" aria-label="Close menu"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="flex flex-col gap-4">
+      <a href="#home" onclick="navigate('home'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">Home</a>
+      <a href="#house-removals" onclick="navigate('house-removals'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">House Removals</a>
+      <a href="#office-removals" onclick="navigate('office-removals'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">Office Removals</a>
+      <a href="#apartment-removals" onclick="navigate('apartment-removals'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">Apartment Removals</a>
+      <a href="#long-distance-removals" onclick="navigate('long-distance-removals'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">Long Distance Removals</a>
+      <a href="#about" onclick="navigate('about'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">About Us</a>
+      <a href="#contact" onclick="navigate('contact'); closeMobileMenu()" class="text-gray-800 font-medium py-2 border-b border-gray-100 hover:text-brand-600">Contact</a>
+      <a href="tel:61402412063" class="btn-primary text-white px-6 py-3 rounded-full font-semibold text-center mt-4">
+        <i class="fas fa-phone mr-2"></i>0402 412 063
+      </a>
+    </nav>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- ===================== HOME PAGE ===================== -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero-bg text-white py-24 md:py-32 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="max-w-3xl fade-in">
+        <span class="inline-block bg-accent-500/20 border border-accent-500/40 text-accent-500 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+          <i class="fas fa-star mr-1"></i> Perth's Trusted Removalists Since 2021
+        </span>
+        <h1 class="font-display text-4xl md:text-6xl font-bold leading-tight mb-6">
+          Professional <span class="gradient-text">Removals</span> Across Perth & Western Australia
+        </h1>
+        <p class="text-lg md:text-xl text-blue-100 mb-8 leading-relaxed">
+          From single-room apartment moves to full-scale office relocations, <strong>Next Step Removals</strong> delivers stress-free, fully insured moving solutions tailored to your schedule and budget.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" onclick="navigate('contact')" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-center inline-flex items-center justify-center gap-2">
+            Get a Free Quote <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="tel:61402412063" class="bg-white/10 backdrop-blur border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-center inline-flex items-center justify-center gap-2 hover:bg-white/20 transition">
+            <i class="fas fa-phone"></i> Call 0402 412 063
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-6 mt-10 text-sm">
+          <div class="flex items-center gap-2"><i class="fas fa-check-circle text-accent-500"></i> Fully Insured</div>
+          <div class="flex items-center gap-2"><i class="fas fa-check-circle text-accent-500"></i> No Hidden Fees</div>
+          <div class="flex items-center gap-2"><i class="fas fa-check-circle text-accent-500"></i> 5-Star Rated</div>
+          <div class="flex items-center gap-2"><i class="fas fa-check-circle text-accent-500"></i> Local & Interstate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-12 bg-white border-b">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="stat-card text-center p-6 rounded-xl bg-brand-50">
+          <div class="text-4xl font-bold text-brand-700 font-display">500+</div>
+          <div class="text-gray-600 mt-1 text-sm">Successful Moves</div>
+        </div>
+        <div class="stat-card text-center p-6 rounded-xl bg-brand-50">
+          <div class="text-4xl font-bold text-brand-700 font-display">5★</div>
+          <div class="text-gray-600 mt-1 text-sm">Customer Rating</div>
+        </div>
+        <div class="stat-card text-center p-6 rounded-xl bg-brand-50">
+          <div class="text-4xl font-bold text-brand-700 font-display">100%</div>
+          <div class="text-gray-600 mt-1 text-sm">Fully Insured</div>
+        </div>
+        <div class="stat-card text-center p-6 rounded-xl bg-brand-50">
+          <div class="text-4xl font-bold text-brand-700 font-display">24/7</div>
+          <div class="text-gray-600 mt-1 text-sm">Support Available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-accent-600 font-semibold uppercase tracking-wider text-sm">Our Services</span>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-brand-900 mt-3 mb-4">Comprehensive Removal Services</h2>
+        <p class="text-gray-600 text-lg">Whether you're moving across the street or across the state, our expert team handles every detail with care.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="service-card bg-white rounded-2xl p-8 border border-gray-100 block">
+          <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl mb-5">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-brand-900 mb-3">House Removals</h3>
+          <p class="text-gray-600 mb-4 text-sm leading-relaxed">Complete home moving services for houses of all sizes. We handle packing, loading, transport and unpacking with care.</p>
+          <span class="text-accent-600 font-semibold text-sm inline-flex items-center gap-1">Learn More <i class="fas fa-arrow-right text-xs"></i></span>
+        </a>
+        <a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="service-card bg-white rounded-2xl p-8 border border-gray-100 block">
+          <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl mb-5">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-brand-900 mb-3">Office Removals</h3>
+          <p class="text-gray-600 mb-4 text-sm leading-relaxed">Minimise downtime with our efficient commercial relocation service. Desks, IT equipment and files moved safely.</p>
+          <span class="text-accent-600 font-semibold text-sm inline-flex items-center gap-1">Learn More <i class="fas fa-arrow-right text-xs"></i></span>
+        </a>
+        <a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="service-card bg-white rounded-2xl p-8 border border-gray-100 block">
+          <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl mb-5">
+            <i class="fas fa-city"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-brand-900 mb-3">Apartment Removals</h3>
+          <p class="text-gray-600 mb-4 text-sm leading-relaxed">Specialist movers for apartments, units and townhouses. Experienced with stairs, lifts and tight access points.</p>
+          <span class="text-accent-600 font-semibold text-sm inline-flex items-center gap-1">Learn More <i class="fas fa-arrow-right text-xs"></i></span>
+        </a>
+        <a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="service-card bg-white rounded-2xl p-8 border border-gray-100 block">
+          <div class="feature-icon w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl mb-5">
+            <i class="fas fa-truck-moving"></i>
+          </div>
+          <h3 class="font-display text-xl font-bold text-brand-900 mb-3">Long Distance Removals</h3>
+          <p class="text-gray-600 mb-4 text-sm leading-relaxed">Interstate and regional WA moves handled professionally. Your belongings arrive safely, no matter the distance.</p>
+          <span class="text-accent-600 font-semibold text-sm inline-flex items-center gap-1">Learn More <i class="fas fa-arrow-right text-xs"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-accent-600 font-semibold uppercase tracking-wider text-sm">Why Choose Us</span>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-brand-900 mt-3 mb-6">Perth's Most Reliable Removalists</h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            At <strong>Next Step Removals</strong>, we believe moving day should be exciting, not stressful. Based in Dayton, WA, our experienced team has helped hundreds of families and businesses across Perth and Western Australia relocate smoothly. We combine professional equipment, transparent pricing and genuine care for your belongings.
+          </p>
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-shield-halved"></i></div>
+              <div>
+                <h4 class="font-semibold text-brand-900 mb-1">Fully Insured & Licensed</h4>
+                <p class="text-gray-600 text-sm">Complete transit insurance coverage for your peace of mind on every move.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-dollar-sign"></i></div>
+              <div>
+                <h4 class="font-semibold text-brand-900 mb-1">Upfront, Honest Pricing</h4>
+                <p class="text-gray-600 text-sm">No hidden fees, no surprises. Get a detailed quote before we start.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-people-carry-box"></i></div>
+              <div>
+                <h4 class="font-semibold text-brand-900 mb-1">Experienced Moving Team</h4>
+                <p class="text-gray-600 text-sm">Trained professionals who treat your possessions like their own.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-clock"></i></div>
+              <div>
+                <h4 class="font-semibold text-brand-900 mb-1">On-Time, Every Time</h4>
+                <p class="text-gray-600 text-sm">We respect your schedule and arrive when we say we will.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="bg-gradient-to-br from-brand-600 to-brand-900 rounded-3xl p-10 text-white">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-accent-500">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              </div>
+              <span class="text-sm text-blue-200">5.0 / 5.0</span>
+            </div>
+            <p class="text-lg italic mb-6 leading-relaxed">"Next Step Removals made our house move completely stress-free. The team was punctual, careful with our furniture and incredibly professional. Highly recommend to anyone moving in Perth!"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-accent-500 rounded-full flex items-center justify-center font-bold">SM</div>
+              <div>
+                <div class="font-semibold">Sarah M.</div>
+                <div class="text-sm text-blue-200">House Move, Joondalup</div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 hidden md:block">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl"><i class="fas fa-check"></i></div>
+              <div>
+                <div class="font-bold text-brand-900">500+ Happy Clients</div>
+                <div class="text-sm text-gray-500">Across Perth & WA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-20 bg-brand-900 text-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-accent-500 font-semibold uppercase tracking-wider text-sm">How It Works</span>
+        <h2 class="font-display text-3xl md:text-5xl font-bold mt-3 mb-4">Simple 4-Step Moving Process</h2>
+        <p class="text-blue-200 text-lg">We've streamlined the moving experience so you can focus on settling into your new space.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto bg-accent-500 rounded-full flex items-center justify-center text-3xl font-bold font-display mb-4">1</div>
+          <h3 class="font-display text-xl font-bold mb-2">Get a Quote</h3>
+          <p class="text-blue-200 text-sm">Call us or fill out our form for a free, no-obligation quote tailored to your move.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto bg-accent-500 rounded-full flex items-center justify-center text-3xl font-bold font-display mb-4">2</div>
+          <h3 class="font-display text-xl font-bold mb-2">Book Your Date</h3>
+          <p class="text-blue-200 text-sm">Secure your preferred moving date with our flexible booking system.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto bg-accent-500 rounded-full flex items-center justify-center text-3xl font-bold font-display mb-4">3</div>
+          <h3 class="font-display text-xl font-bold mb-2">We Move You</h3>
+          <p class="text-blue-200 text-sm">Our professional team handles packing, loading, transport and unloading with care.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-20 h-20 mx-auto bg-accent-500 rounded-full flex items-center justify-center text-3xl font-bold font-display mb-4">4</div>
+          <h3 class="font-display text-xl font-bold mb-2">Settle In</h3>
+          <p class="text-blue-200 text-sm">Relax in your new home or office while we place everything exactly where you want it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-accent-600 font-semibold uppercase tracking-wider text-sm">Testimonials</span>
+        <h2 class="font-display text-3xl md:text-5xl font-bold text-brand-900 mt-3 mb-4">What Our Clients Say</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-sm">
+          <div class="flex text-accent-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-gray-700 mb-6 italic leading-relaxed">"Absolutely fantastic service! The team arrived on time, wrapped everything carefully and had us moved into our new home in half the time I expected. Worth every cent."</p>
+          <div class="flex items-center gap-3 pt-4 border-t">
+            <div class="w-10 h-10 bg-brand-600 text-white rounded-full flex items-center justify-center font-bold">JT</div>
+            <div>
+              <div class="font-semibold text-brand-900">James T.</div>
+              <div class="text-sm text-gray-500">House Move, Ellenbrook</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-sm">
+          <div class="flex text-accent-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-gray-700 mb-6 italic leading-relaxed">"We used Next Step Removals for our office relocation and they were exceptional. Zero damage to equipment, minimal downtime and the price was very competitive."</p>
+          <div class="flex items-center gap-3 pt-4 border-t">
+            <div class="w-10 h-10 bg-accent-500 text-white rounded-full flex items-center justify-center font-bold">LR</div>
+            <div>
+              <div class="font-semibold text-brand-900">Lisa R.</div>
+              <div class="text-sm text-gray-500">Office Move, Perth CBD</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card bg-white p-8 rounded-2xl shadow-sm">
+          <div class="flex text-accent-500 mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p class="text-gray-700 mb-6 italic leading-relaxed">"Moving interstate was daunting but Next Step made it seamless. They kept me updated the whole way and everything arrived in perfect condition. Highly recommend!"</p>
+          <div class="flex items-center gap-3 pt-4 border-t">
+            <div class="w-10 h-10 bg-brand-800 text-white rounded-full flex items-center justify-center font-bold">DK</div>
+            <div>
+              <div class="font-semibold text-brand-900">David K.</div>
+              <div class="text-sm text-gray-500">Long Distance, Perth → Melbourne</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner py-16">
+    <div class="max-w-5xl mx-auto px-4 text-center text-white">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4">Ready to Make Your Next Step?</h2>
+      <p class="text-xl mb-8 text-orange-50">Get a free, no-obligation quote from Perth's most trusted removalists today.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="tel:61402412063" class="bg-white text-accent-600 px-8 py-4 rounded-full font-bold inline-flex items-center justify-center gap-2 hover:bg-gray-100 transition">
+          <i class="fas fa-phone"></i> Call 0402 412 063
+        </a>
+        <a href="#contact" onclick="navigate('contact')" class="bg-brand-900 text-white px-8 py-4 rounded-full font-bold inline-flex items-center justify-center gap-2 hover:bg-brand-800 transition">
+          Request a Quote <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===================== HOUSE REMOVALS PAGE ===================== -->
+<div id="page-house-removals" class="page">
+  <section class="service-hero text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <nav class="text-sm mb-4 text-blue-200">
+        <a href="#home" onclick="navigate('home')" class="hover:text-white">Home</a> <i class="fas fa-chevron-right mx-2 text-xs"></i>
+        <a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-white">House Removals</a>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">House Removals in Perth</h1>
+      <p class="text-xl text-blue-100 max-w-3xl">Professional, stress-free house moving services across Perth and Western Australia. Your home, handled with care.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-3xl font-bold text-brand-900 mb-6">Trusted House Movers You Can Rely On</h2>
+        <p class="text-gray-700 mb-5 leading-relaxed">Moving house is one of life's biggest milestones — and it doesn't have to be stressful. At <strong>Next Step Removals</strong>, we specialise in complete <a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">house removals in Perth</a>, helping families transition smoothly from their old home to their new one. Whether you're moving from a compact townhouse in the northern suburbs or a spacious family home in the hills, our experienced team has the tools, training and care to handle every item with respect.</p>
+        <p class="text-gray-700 mb-5 leading-relaxed">We understand that your home contains more than just furniture — it holds memories, heirlooms and personal treasures. That's why every <a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">house removal service</a> we provide includes careful wrapping, secure loading and methodical unloading at your new address. From single-storey homes to multi-level residences, we've moved them all.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">What's Included in Our House Removal Service</h3>
+        <ul class="space-y-3 mb-6">
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Pre-move consultation</strong> — We assess your home and provide a detailed, obligation-free quote.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Professional packing</strong> — High-quality materials and techniques to protect fragile items, glassware and electronics.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Furniture dismantling & reassembly</strong> — Beds, tables and wardrobes taken apart and rebuilt at your new home.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Safe loading & transport</strong> — Modern trucks with straps, blankets and padding to prevent damage in transit.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Unpacking & placement</strong> — We place boxes and furniture in the rooms of your choice.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Full transit insurance</strong> — Complete coverage for your peace of mind throughout the move.</span></li>
+        </ul>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">House Moves Across All Perth Suburbs</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">Based in Dayton WA 6055, we service the entire Perth metropolitan area and beyond. Our <a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">house removals team</a> regularly works across the northern suburbs (Joondalup, Wanneroo, Ellenbrook, Kinross), eastern suburbs (Midland, Kalamunda, Forrestfield), southern suburbs (Fremantle, Rockingham, Mandurah) and the Perth CBD. No location is too far or too tricky — we've handled steep driveways, narrow laneways and apartment complexes with equal professionalism.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Why Homeowners Choose Next Step Removals</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">We've built our reputation on punctuality, transparent pricing and genuine care for our clients. When you book a <a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">house move with Next Step Removals</a>, you get a dedicated move coordinator, a fixed quote with no hidden fees, and a team that treats your possessions as if they were their own. Our 5-star reviews from Perth homeowners speak for themselves.</p>
+      </div>
+      <aside class="bg-brand-50 rounded-2xl p-6 h-fit sticky top-24">
+        <h3 class="font-display text-xl font-bold text-brand-900 mb-4">Get a Free Quote</h3>
+        <p class="text-gray-600 text-sm mb-4">Tell us about your house move and we'll get back to you within the hour.</p>
+        <a href="tel:61402412063" class="btn-primary text-white w-full py-3 rounded-full font-semibold text-center block mb-3"><i class="fas fa-phone mr-2"></i>0402 412 063</a>
+        <a href="#contact" onclick="navigate('contact')" class="btn-secondary text-white w-full py-3 rounded-full font-semibold text-center block">Request Quote Online</a>
+        <div class="mt-6 pt-6 border-t border-brand-200">
+          <h4 class="font-semibold text-brand-900 mb-3 text-sm">Related Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Office Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Apartment Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Long Distance Removals</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== OFFICE REMOVALS PAGE ===================== -->
+<div id="page-office-removals" class="page">
+  <section class="service-hero text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <nav class="text-sm mb-4 text-blue-200">
+        <a href="#home" onclick="navigate('home')" class="hover:text-white">Home</a> <i class="fas fa-chevron-right mx-2 text-xs"></i>
+        <a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-white">Office Removals</a>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Office Removals in Perth</h1>
+      <p class="text-xl text-blue-100 max-w-3xl">Minimise downtime and maximise productivity with our professional commercial relocation services.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-3xl font-bold text-brand-900 mb-6">Commercial Relocation Experts for Perth Businesses</h2>
+        <p class="text-gray-700 mb-5 leading-relaxed">Relocating your business is a major operation — every hour of downtime costs money. That's why Perth companies trust <strong>Next Step Removals</strong> for fast, efficient and damage-free <a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">office removals</a>. From small start-ups to established corporate offices, we plan every commercial move with precision to get your team back to work as quickly as possible.</p>
+        <p class="text-gray-700 mb-5 leading-relaxed">Our <a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">commercial relocation service</a> covers everything from workstations and boardroom furniture to IT infrastructure, files and kitchen equipment. We work closely with your office manager to develop a detailed move plan, including after-hours and weekend options to avoid disrupting business operations.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Our Office Removal Services Include</h3>
+        <ul class="space-y-3 mb-6">
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Office furniture relocation</strong> — Desks, chairs, cabinets, reception counters and boardroom tables moved safely.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>IT & electronics handling</strong> — Computers, servers, printers and AV equipment packed with anti-static materials.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>File & document relocation</strong> — Secure, labelled boxes to keep sensitive paperwork organised.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>After-hours & weekend moves</strong> — Schedule your office relocation outside business hours to avoid downtime.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Setup at new location</strong> — Furniture reassembled and workstations configured ready for day one.</span></li>
+        </ul>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Serving Businesses Across Perth</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">From the Perth CBD and Subiaco to industrial parks in Malaga and Jandakot, our <a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">office removals team</a> has relocated businesses of every size and industry. We understand loading dock protocols, building management requirements and the importance of clear communication throughout the process.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Why Perth Businesses Choose Us</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">We combine commercial-grade equipment with meticulous planning. Every <a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">Perth office move</a> is assigned a dedicated project manager who coordinates timelines, access requirements and specialist handling. Our fully insured service means your business assets are protected from the moment we start packing until the last box is placed in your new office.</p>
+      </div>
+      <aside class="bg-brand-50 rounded-2xl p-6 h-fit sticky top-24">
+        <h3 class="font-display text-xl font-bold text-brand-900 mb-4">Book a Commercial Move</h3>
+        <p class="text-gray-600 text-sm mb-4">Speak to our commercial team about your office relocation.</p>
+        <a href="tel:61402412063" class="btn-primary text-white w-full py-3 rounded-full font-semibold text-center block mb-3"><i class="fas fa-phone mr-2"></i>0402 412 063</a>
+        <a href="#contact" onclick="navigate('contact')" class="btn-secondary text-white w-full py-3 rounded-full font-semibold text-center block">Request Quote</a>
+        <div class="mt-6 pt-6 border-t border-brand-200">
+          <h4 class="font-semibold text-brand-900 mb-3 text-sm">Related Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>House Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Apartment Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Long Distance Removals</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== APARTMENT REMOVALS PAGE ===================== -->
+<div id="page-apartment-removals" class="page">
+  <section class="service-hero text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <nav class="text-sm mb-4 text-blue-200">
+        <a href="#home" onclick="navigate('home')" class="hover:text-white">Home</a> <i class="fas fa-chevron-right mx-2 text-xs"></i>
+        <a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-white">Apartment Removals</a>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Apartment Removals in Perth</h1>
+      <p class="text-xl text-blue-100 max-w-3xl">Specialist movers for apartments, units and townhouses — stairs, lifts and tight access handled with ease.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-3xl font-bold text-brand-900 mb-6">Apartment Moving Specialists in Perth</h2>
+        <p class="text-gray-700 mb-5 leading-relaxed">Moving into or out of an apartment comes with its own unique challenges — narrow hallways, shared lifts, staircases, parking restrictions and strata regulations. At <strong>Next Step Removals</strong>, we've mastered the art of <a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">apartment removals in Perth</a>. Our team is trained to work efficiently in confined spaces while protecting common areas, lifts and walls from any damage.</p>
+        <p class="text-gray-700 mb-5 leading-relaxed">Whether you're relocating from a high-rise in the Perth CBD, a townhouse in Leederville or a unit in Scarborough, our <a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">apartment moving service</a> is tailored to the specific logistics of multi-dwelling buildings. We coordinate with building managers, reserve service lifts and ensure your move complies with all strata requirements.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Apartment Removal Services We Provide</h3>
+        <ul class="space-y-3 mb-6">
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>High-rise apartment moves</strong> — Experienced with service lifts, loading docks and high-rise logistics.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Stair-access moves</strong> — Specialist equipment and techniques for walk-up apartments.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Townhouse & unit relocations</strong> — Perfect for smaller homes with limited access.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Building protection</strong> — Floor runners, wall protectors and lift padding to prevent damage.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Strata coordination</strong> — We handle booking service lifts and common-area access.</span></li>
+        </ul>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Perth Areas We Service</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">Our <a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">apartment removals team</a> regularly works in Perth's key apartment precincts including the CBD, West Perth, Northbridge, Subiaco, Joondalup, Fremantle, Scarborough, Victoria Park and East Perth. We know the buildings, the rules and the best ways to get your move done quickly and cleanly.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">The Next Step Difference</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">Unlike general removalists who struggle with apartment logistics, we specialise in them. Our compact, manoeuvrable trucks are ideal for city streets, and our team is trained in tight-space handling. Every <a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">Perth apartment move</a> is fully insured, with transparent pricing and no hidden fees for stairs or lifts.</p>
+      </div>
+      <aside class="bg-brand-50 rounded-2xl p-6 h-fit sticky top-24">
+        <h3 class="font-display text-xl font-bold text-brand-900 mb-4">Apartment Move Quote</h3>
+        <p class="text-gray-600 text-sm mb-4">Get a tailored quote for your apartment relocation.</p>
+        <a href="tel:61402412063" class="btn-primary text-white w-full py-3 rounded-full font-semibold text-center block mb-3"><i class="fas fa-phone mr-2"></i>0402 412 063</a>
+        <a href="#contact" onclick="navigate('contact')" class="btn-secondary text-white w-full py-3 rounded-full font-semibold text-center block">Request Quote</a>
+        <div class="mt-6 pt-6 border-t border-brand-200">
+          <h4 class="font-semibold text-brand-900 mb-3 text-sm">Related Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>House Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Office Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Long Distance Removals</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== LONG DISTANCE REMOVALS PAGE ===================== -->
+<div id="page-long-distance-removals" class="page">
+  <section class="service-hero text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <nav class="text-sm mb-4 text-blue-200">
+        <a href="#home" onclick="navigate('home')" class="hover:text-white">Home</a> <i class="fas fa-chevron-right mx-2 text-xs"></i>
+        <a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-white">Long Distance Removals</a>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Long Distance Removals from Perth</h1>
+      <p class="text-xl text-blue-100 max-w-3xl">Interstate and regional WA moves handled with care, precision and full insurance coverage.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-3 gap-10">
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-3xl font-bold text-brand-900 mb-6">Interstate & Regional Removals You Can Trust</h2>
+        <p class="text-gray-700 mb-5 leading-relaxed">Moving long distance is a big decision — and choosing the right removalist is critical. At <strong>Next Step Removals</strong>, we specialise in <a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">long distance removals from Perth</a> to destinations across Western Australia and interstate. Whether you're relocating to the regions of WA or moving to Melbourne, Sydney, Brisbane or Adelaide, our team delivers your belongings safely and on schedule.</p>
+        <p class="text-gray-700 mb-5 leading-relaxed">Long distance moves require different planning than local relocations. Our <a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">interstate removal service</a> includes detailed inventory management, secure packing for extended transit, GPS-tracked vehicles and regular updates so you always know where your belongings are. We treat every long distance move as if it were our own home.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Long Distance Removal Services Include</h3>
+        <ul class="space-y-3 mb-6">
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Interstate removals</strong> — Perth to all major Australian capitals and regional centres.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Regional WA moves</strong> — Geraldton, Kalgoorlie, Albany, Bunbury, Broome and beyond.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Secure transit</strong> — GPS-tracked vehicles and premium padding for long-haul journeys.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Full inventory management</strong> — Detailed item lists so nothing goes missing in transit.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Comprehensive insurance</strong> — Extended coverage for long distance transit.</span></li>
+          <li class="flex gap-3"><i class="fas fa-check-circle text-accent-500 mt-1"></i><span><strong>Storage solutions</strong> — Secure short or long-term storage if your timelines don't align.</span></li>
+        </ul>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Destinations We Service</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">Our <a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">long distance removals team</a> regularly completes moves from Perth to Melbourne, Sydney, Adelaide, Brisbane, Hobart and Darwin, as well as to regional WA destinations including the Pilbara, Goldfields, Great Southern and Mid West regions. No destination is too remote — we'll get your belongings there safely.</p>
+
+        <h3 class="font-display text-2xl font-bold text-brand-900 mt-10 mb-4">Why Choose Next Step for Long Distance Moves</h3>
+        <p class="text-gray-700 mb-5 leading-relaxed">We combine local Perth expertise with national reach. Our <a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-brand-600 font-semibold hover:underline">interstate movers</a> are experienced in the unique challenges of long-haul transport, including varying weather conditions, road regulations and multi-state logistics. You'll have a dedicated move coordinator throughout the entire journey, with transparent pricing and no surprise fees at delivery.</p>
+      </div>
+      <aside class="bg-brand-50 rounded-2xl p-6 h-fit sticky top-24">
+        <h3 class="font-display text-xl font-bold text-brand-900 mb-4">Long Distance Quote</h3>
+        <p class="text-gray-600 text-sm mb-4">Get a custom quote for your interstate or regional move.</p>
+        <a href="tel:61402412063" class="btn-primary text-white w-full py-3 rounded-full font-semibold text-center block mb-3"><i class="fas fa-phone mr-2"></i>0402 412 063</a>
+        <a href="#contact" onclick="navigate('contact')" class="btn-secondary text-white w-full py-3 rounded-full font-semibold text-center block">Request Quote</a>
+        <div class="mt-6 pt-6 border-t border-brand-200">
+          <h4 class="font-semibold text-brand-900 mb-3 text-sm">Related Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>House Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Office Removals</a></li>
+            <li><a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-brand-600 hover:underline flex items-center gap-2"><i class="fas fa-arrow-right text-xs text-accent-500"></i>Apartment Removals</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== ABOUT PAGE ===================== -->
+<div id="page-about" class="page">
+  <section class="service-hero text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <nav class="text-sm mb-4 text-blue-200">
+        <a href="#home" onclick="navigate('home')" class="hover:text-white">Home</a> <i class="fas fa-chevron-right mx-2 text-xs"></i>
+        <span class="text-white">About Us</span>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">About Next Step Removals</h1>
+      <p class="text-xl text-blue-100 max-w-3xl">Perth's trusted removalists — delivering stress-free moves with care, integrity and professionalism.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+        <div>
+          <span class="text-accent-600 font-semibold uppercase tracking-wider text-sm">Our Story</span>
+          <h2 class="font-display text-3xl font-bold text-brand-900 mt-3 mb-5">Helping Perth Move Forward Since 2021</h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">Next Step Removals was founded with a simple mission: to make moving day the best day, not the most stressful. Based in Dayton, Western Australia, we've grown from a small local team into one of Perth's most trusted removal companies — serving hundreds of families and businesses across the metropolitan area and beyond.</p>
+          <p class="text-gray-700 leading-relaxed">We built our reputation on three pillars: showing up on time, treating every possession with respect, and charging fair, transparent prices. That philosophy hasn't changed — and it's why so many of our clients come back to us for their next move, or recommend us to friends and family.</p>
+        </div>
+        <div class="bg-gradient-to-br from-brand-600 to-brand-900 rounded-3xl p-10 text-white">
+          <h3 class="font-display text-2xl font-bold mb-6">Our Values</h3>
+          <div class="space-y-4">
+            <div class="flex gap-3"><i class="fas fa-handshake text-accent-500 text-xl mt-1"></i><div><div class="font-semibold">Integrity</div><div class="text-sm text-blue-200">Honest quotes, no hidden fees, no surprises.</div></div></div>
+            <div class="flex gap-3"><i class="fas fa-heart text-accent-500 text-xl mt-1"></i><div><div class="font-semibold">Care</div><div class="text-sm text-blue-200">Your belongings are treated like our own.</div></div></div>
+            <div class="flex gap-3"><i class="fas fa-bolt text-accent-500 text-xl mt-1"></i><div><div class="font-semibold">Reliability</div><div class="text-sm text-blue-200">On time, every time — guaranteed.</div></div></div>
+            <div class="flex gap-3"><i class="fas fa-award text-accent-500 text-xl mt-1"></i><div><div class="font-semibold">Excellence</div><div class="text-sm text-blue-200">Professional service from start to finish.</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 rounded-3xl p-10 mb-16">
+        <h2 class="font-display text-3xl font-bold text-brand-900 mb-6 text-center">Why Perth Trusts Us</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fas fa-users"></i></div>
+            <h3 class="font-semibold text-brand-900 mb-2">Experienced Team</h3>
+            <p class="text-gray-600 text-sm">Our movers are trained, vetted and experienced across all types of relocations.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fas fa-truck"></i></div>
+            <h3 class="font-semibold text-brand-900 mb-2">Modern Fleet</h3>
+            <p class="text-gray-600 text-sm">Well-maintained trucks equipped with straps, blankets and padding for every job size.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fas fa-shield-halved"></i></div>
+            <h3 class="font-semibold text-brand-900 mb-2">Full Insurance</h3>
+            <p class="text-gray-600 text-sm">Complete transit insurance on every move for your total peace of mind.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <h2 class="font-display text-3xl font-bold text-brand-900 mb-4">Ready to Experience the Difference?</h2>
+        <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Join the hundreds of happy Perth customers who've made their next step with us.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="tel:61402412063" class="btn-primary text-white px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2"><i class="fas fa-phone"></i> Call 0402 412 063</a>
+          <a href="#contact" onclick="navigate('contact')" class="btn-secondary text-white px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center gap-2">Get in Touch <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== CONTACT PAGE ===================== -->
+<div id="page-contact" class="page">
+  <section class="service-hero text-white py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <nav class="text-sm mb-4 text-blue-200">
+        <a href="#home" onclick="navigate('home')" class="hover:text-white">Home</a> <i class="fas fa-chevron-right mx-2 text-xs"></i>
+        <span class="text-white">Contact Us</span>
+      </nav>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Contact Next Step Removals</h1>
+      <p class="text-xl text-blue-100 max-w-3xl">Get in touch for a free, no-obligation quote. We respond to all enquiries within the hour during business hours.</p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-8 mb-12">
+        <div class="bg-brand-50 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 mx-auto bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fas fa-phone"></i></div>
+          <h3 class="font-display font-bold text-brand-900 mb-2">Call Us</h3>
+          <a href="tel:61402412063" class="text-brand-600 font-semibold hover:underline">0402 412 063</a>
+          <p class="text-sm text-gray-600 mt-2">Mon–Sat: 8 AM – 6 PM</p>
+        </div>
+        <div class="bg-brand-50 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 mx-auto bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fas fa-map-marker-alt"></i></div>
+          <h3 class="font-display font-bold text-brand-900 mb-2">Visit Us</h3>
+          <p class="text-gray-700">13 Macrandra Way<br>Dayton WA 6055</p>
+        </div>
+        <div class="bg-brand-50 rounded-2xl p-8 text-center">
+          <div class="w-16 h-16 mx-auto bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-4"><i class="fas fa-clock"></i></div>
+          <h3 class="font-display font-bold text-brand-900 mb-2">Business Hours</h3>
+          <p class="text-gray-700">Monday – Saturday<br>8:00 AM – 6:00 PM</p>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="font-display text-3xl font-bold text-brand-900 mb-6">Request a Free Quote</h2>
+          <form id="contactForm" class="space-y-5">
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="John Smith">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Phone *</label>
+                <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="04XX XXX XXX">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+              <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="you@example.com">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Service Required *</label>
+              <select required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition bg-white">
+                <option value="">Select a service</option>
+                <option>House Removals</option>
+                <option>Office Removals</option>
+                <option>Apartment Removals</option>
+                <option>Long Distance Removals</option>
+              </select>
+            </div>
+            <div class="grid md:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup Suburb</label>
+                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="e.g. Joondalup">
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Suburb</label>
+                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="e.g. Fremantle">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Move Date</label>
+              <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Move Details</label>
+              <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="Tell us about your move — size of home, special items, access requirements, etc."></textarea>
+            </div>
+            <button type="submit" class="btn-primary text-white w-full py-4 rounded-full font-semibold text-lg">
+              <i class="fas fa-paper-plane mr-2"></i>Send Quote Request
+            </button>
+            <div id="formSuccess" class="hidden bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded-xl">
+              <i class="fas fa-check-circle mr-2"></i>Thank you! We'll get back to you within the hour.
+            </div>
+          </form>
+        </div>
+        <div>
+          <h2 class="font-display text-3xl font-bold text-brand-900 mb-6">Find Us</h2>
+          <div class="rounded-2xl overflow-hidden shadow-lg mb-6">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.9117836826117!2d115.9780023!3d-31.8546157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32b77890a0961b%3A0xad1be2be3d4d199f!2sNext%20Step%20Removals!5e0!3m2!1sen!2sau!4v1790177692345!5m2!1sen!2sau" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Next Step Removals Location"></iframe>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-6">
+            <h3 class="font-display font-bold text-brand-900 mb-4">Connect With Us</h3>
+            <div class="flex gap-3">
+              <a href="https://www.facebook.com/nextstepremovals/" target="_blank" rel="noopener" class="w-12 h-12 bg-brand-600 text-white rounded-xl flex items-center justify-center hover:bg-brand-700 transition" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/nextstepremovals/" target="_blank" rel="noopener" class="w-12 h-12 bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-400 text-white rounded-xl flex items-center justify-center hover:opacity-90 transition" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/nextstepremovals/" target="_blank" rel="noopener" class="w-12 h-12 bg-blue-700 text-white rounded-xl flex items-center justify-center hover:bg-blue-800 transition" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="text-sm text-gray-600 mt-4">Follow us for moving tips, behind-the-scenes content and special offers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-brand-900 text-white pt-16 pb-6">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <img src="https://nextstepremovals.com.au/wp-content/uploads/2021/07/next-step-removals-logo.png.webp" alt="Next Step Removals" class="h-14 mb-5 bg-white p-2 rounded-lg">
+        <p class="text-blue-200 text-sm leading-relaxed mb-5">Perth's trusted removalists. Professional house, office, apartment and long distance removals with full insurance and transparent pricing.</p>
+        <div class="flex gap-3">
+          <a href="https://www.facebook.com/nextstepremovals/" target="_blank" rel="noopener" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-accent-500 transition" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/nextstepremovals/" target="_blank" rel="noopener" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-accent-500 transition" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/nextstepremovals/" target="_blank" rel="noopener" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-accent-500 transition" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-5">Our Services</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="https://nextstepremovals.com.au/house-move/" target="_blank" rel="noopener" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>House Removals</a></li>
+          <li><a href="https://nextstepremovals.com.au/office-move/" target="_blank" rel="noopener" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>Office Removals</a></li>
+          <li><a href="https://nextstepremovals.com.au/apartment-move/" target="_blank" rel="noopener" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>Apartment Removals</a></li>
+          <li><a href="https://nextstepremovals.com.au/long-distance-move/" target="_blank" rel="noopener" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>Long Distance Removals</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-5">Quick Links</h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#home" onclick="navigate('home')" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>Home</a></li>
+          <li><a href="#about" onclick="navigate('about')" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>About Us</a></li>
+          <li><a href="#contact" onclick="navigate('contact')" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>Contact</a></li>
+          <li><a href="#contact" onclick="navigate('contact')" class="text-blue-200 hover:text-accent-500 transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs text-accent-500"></i>Free Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-display font-bold text-lg mb-5">Contact Info</h4>
+        <ul class="space-y-3 text-sm text-blue-200">
+          <li class="flex gap-3"><i class="fas fa-map-marker-alt text-accent-500 mt-1"></i><span>13 Macrandra Way,<br>Dayton WA 6055</span></li>
+          <li class="flex gap-3"><i class="fas fa-phone text-accent-500 mt-1"></i><a href="tel:61402412063" class="hover:text-white transition">0402 412 063</a></li>
+          <li class="flex gap-3"><i class="fas fa-clock text-accent-500 mt-1"></i><span>Mon–Sat: 8 AM – 6 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-blue-200">
+      <p>© 2026 Next Step Removals. All rights reserved. | ABN Registered | Fully Insured</p>
+      <p>Professional Removalists in Perth, Western Australia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating Call Button (Mobile) -->
+<a href="tel:61402412063" class="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-accent-500 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-accent-600 transition z-40" aria-label="Call us">
+  <i class="fas fa-phone"></i>
+</a>
+
+<script>
+  // Navigation
+  function navigate(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + page);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Update URL hash
+      history.pushState(null, '', '#' + page);
+    }
+  }
+
+  // Handle initial hash
+  window.addEventListener('load', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('page-' + hash)) {
+      navigate(hash);
+    }
+  });
+
+  // Handle back/forward
+  window.addEventListener('popstate', () => {
+    const hash = window.location.hash.replace('#', '') || 'home';
+    navigate(hash);
+  });
+
+  // Mobile menu
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const closeMenuBtn = document.getElementById('closeMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+
+  // Contact form
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('formSuccess').classList.remove('hidden');
+    e.target.reset();
+    setTimeout(() => {
+      document.getElementById('formSuccess').classList.add('hidden');
+    }, 5000);
+  });
+</script>
+
+</body>
+</html>
